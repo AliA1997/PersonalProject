@@ -4,6 +4,7 @@ const massive = require('massive');
 const session = require('express-session');
 const axios = require('axios');
 const bodyParser = require('body-parser');
+const parser = require('xml2json');
 // const Auth0Lock = require('auth0-lock');
 
 const app = express();
@@ -24,6 +25,15 @@ app.use(session({
     saveUninitialized: false,
     resave: false,
 }));
+
+app.get('/home', (req, res) => {
+    axios.get('http://seize-the-dream.s3-accelerate.amazonaws.com').then(response => {
+        var json = parser.toJson(response.data)
+        var j = JSON.parse(json)
+        // console.log(json);
+        res.status(200).json(j);
+    })
+})
 
 
 app.post('/', (req, res) => {
@@ -48,8 +58,8 @@ app.post('/', (req, res) => {
                 req.session.user = userForDatabase;
                 res.json({ user: req.session.user })
             } else {
-                app.get('db').create_user([userData.user_id, userData.name, userData.email, userData.picture]).then(() => {
-                    req.session.user = userForDatabase;
+                app.get('db').create_user([userData.user_id, userData.name, userData.email, userData.picture]).then(user => {
+                    req.session.user = user[0];
                     res.json({ user: req.session.user });
                 })
             }
@@ -59,8 +69,6 @@ app.post('/', (req, res) => {
         res.status(500).json({message: 'Server 500'});
     })
 })
-
-app.get('')
 
 const PORT = 3035;
 

@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;
+}
+
+h3 {
+    color: #13F9E4;
+}
+
+
+.header-link {
+    text-decoration: none;
+    color: #13F9E4;
+}

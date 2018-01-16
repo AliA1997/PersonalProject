@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Login from './Components/Login/Login';
 import Home from './Components/Home/Home';
+import Header from './Components/Header/Header';
 import {Route, Switch} from 'react-router-dom';
 
 class App extends Component {
@@ -12,7 +12,8 @@ class App extends Component {
         <Switch>
           <Route exact path='/(access_token.*)?' component={Login} />
           <Route path='/home' component={Home} />
-        </Switch>
+          <Route path='/header' component={Header} />
+          </Switch>
       </div>
     );
   }
