@@ -2,7 +2,8 @@
   "name": "dream-board",
   "version": "0.1.0",
   "private": true,
-  "main": "Server/Server.js",
+  "main": "Server/server.js",
+  "proxy": "http://localhost:3035",
   "dependencies": {
     "auth0-lock": "^11.0.1",
     "axios": "^0.17.1",
