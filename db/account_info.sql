@@ -1,0 +1,1 @@
+SELECT * FROM dream_images di WHERE user_id = $1 INNER JOIN users u on (di.user_id = u.user_id)

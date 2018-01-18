@@ -9,8 +9,8 @@ class Header extends Component {
                 <div className='header'>
                 <h3>SeizeMyDream</h3>
                 <Link to='/home' className='header-link'>Home</Link>
-                <Link to='/searchdreams' className='header-link'>Search</Link>
-                <Link to='/myaccount' className='header-link'>Account</Link>
+                <Link to='/mydreams' className='header-link'>My Dreams</Link>
+                <Link to='/myaccount' className='header-link'>Edit</Link>
                 <Link to='/uploaddream' className='header-link'>Upload</Link>
                 <Link to='/' className='header-link'>Logout</Link>
                 </div>

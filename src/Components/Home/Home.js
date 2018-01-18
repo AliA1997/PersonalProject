@@ -14,41 +14,30 @@ class Home extends Component {
     this.state = {
       contents: [],
       messages: [],
-      text: ""
+      text: '',
+      quote: '',
     };
     // this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    // this.allowEdit = this.allowEdit.bind(this);
-    // this.createMessage = this.createMessage.bind(this);
-    // this.editMessage = this.editMessage.bind(this);
+   
   }
 
-  componentDidMount(){
-    const {id} = this.props.user
-    axios.get(`/home/${id}`).then(response => {
-      const image = response.data;
-      // const text = image.map(elem => {
-      //   return elem.image_text
-      // })
-      // const images = image.map(elem =>{
-      //   return elem.image_url
-      // })
-      // console.log(images);
+
+
+  componentDidMount() {
+    axios.get("/home").then(response => {
+      let res = response.data.ListBucketResult.Contents;
       this.setState({
-        contents: image
-      })
-    })
+        contents: res
+      });
+    });
+    // axios.get('/homes').then(response => {
+    //   let q = response.data.contents.quotes[0].quote;
+    //   this.setState({
+    //     quote: q
+    //   })
+    // })
   }
-
-  // componentDidMount() {
-  //   axios.get("/home").then(response => {
-  //     let res = response.data.ListBucketResult.Contents;
-  //     // console.log(array)
-  //     this.setState({
-  //       contents: res
-  //     });
-  //   });
-  // }
     // axios.get("/home").then(response =>{
     //     this.setState({
     //         contents: response.data
@@ -59,48 +48,17 @@ class Home extends Component {
     this.setState({ text: event.target.value });
   }
 
-//   createMessage(event) {
-//     const { text } = this.state;
-//     if (event.key === "Enter" && text.length !== 0) {
-//       axios.post(url).then(response => {
-//         this.setState({ messages: response.data });
-//       });
-
-//       this.setState({ text: "" });
-//     }
-//   }
-
-//   editMessage(id, text) {
-//     axios.put(`${url}?id=${id}`, { text }).then(response => {
-//       this.setState({ messages: response.data });
-//     });
-//   }
-
-//   handleClick() {
-//     const { contents } = this.state;
-//     //  contents.map(elem => {
-//     //      if(elem === )
-//     //  })
-//     console.log(contents);
-//     //  this.props.history.push('/uploaddream');
-//     // console.log('clicked')
-//   }
-
-// allowEdit(){
-//   this.props.history.push('/alterdream');
-
-// }
-
 imageClick(){
-
+  
 }
 
   render() {
-    console.log('state', this.state.contents)
+    // console.log('state', this.state.contents)
     return (
       <div>
         <Header />
         <h1>HomePage</h1>
+        {/* <p><b>Quote of the Day:</b> {this.state.quote}</p> */}
         {/* <textarea
           className="dream-input"
           onKeyPress={this.createMessage}
@@ -109,38 +67,13 @@ imageClick(){
         />
         <br />
         <div className="text">{this.state.text}</div> */}
+          <div className='tile-box'>
         <Masonry>
           {this.state.contents.map((elem, i) => {
             // {console.log('element', elem)}
             return (
               <div key={i} className='tiles'>
-                <img
-                    onClick={this.imageClick}
-                    src={elem.image_url}
-                    alt="display"
-                    className="image"
-                    data-grid={{ x: 4, y: 0, w: 1, h: 2 }}
-                  />
-                 <h2 className='image-text'><span>{elem.image_text}</span></h2>
-              </div>
-            );
-          })}
-        </Masonry> 
-      </div>
-    );
-}
-}
-
-function mapStateToProps(state){
-  console.log(state)
-  return {
-    user: state.user
-  }
-}
-
-{/* <button onClick={this.handleClick}><img src={elem} alt="display" className='image' /></button> */}
-
- {/* <button onClick={this.allowEdit}><img
+               <img
                     key="c"
                     src={`https://s3-us-west-1.amazonaws.com/seize-the-dream/${
                       elem.Key
@@ -148,7 +81,35 @@ function mapStateToProps(state){
                     alt="display"
                     className="image"
                     data-grid={{ x: 4, y: 0, w: 1, h: 2 }}
-                  /></button> */}
+                    onClick={this.imageClick}
+                  />
+                {/* <img
+                    onClick={this.imageClick}
+                    src={elem.image_url}
+                    alt="display"
+                    className="image"
+                    data-grid={{ x: 4, y: 0, w: 1, h: 2 }}
+                  />
+                 <h2 className='image-text'><span>{elem.image_text}</span></h2> */}
+              </div>
+            );
+          })}
+        </Masonry> 
+          </div>
+      </div>
+    );
+}
+}
+
+function mapStateToProps(state){
+  // console.log(state)
+  return {
+    user: state.user
+  }
+}
+
+{/* <button onClick={this.handleClick}><img src={elem} alt="display" className='image' /></button> */}
+
 
 export default connect(mapStateToProps)(Home);
 

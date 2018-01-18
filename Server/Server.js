@@ -6,8 +6,6 @@ const axios = require('axios');
 const bodyParser = require('body-parser');
 const parser = require('xml2json');
 const multer = require('multer');
-// const AWS = require('aws-sdk');
-const ctrl = require('./controllers/message');
 const corsPrefetch = require('cors-prefetch-middleware');
 const imagesUpload = require('images-upload-middleware');
 
@@ -46,15 +44,16 @@ massive(process.env.CONNECTION_STRING).then(db => {
 
 
 //PULLING IMAGES FROM API OR S3
-// app.get('/home', (req, res) => {
-//     axios.get('http://seize-the-dream.s3-accelerate.amazonaws.com').then(response => {
-//         var json = parser.toJson(response.data)
-//         var j = JSON.parse(json)
-//         // console.log(json);
-//         res.status(200).json(j);
-//     })
-// })
+app.get('/home', (req, res) => {
+    axios.get('http://seize-the-dream.s3-accelerate.amazonaws.com').then(response => {
+        var json = parser.toJson(response.data)
+        var j = JSON.parse(json)
+        // console.log(json);
+        res.status(200).json(j);
+    })
+})
 
+//PULL IMAGES FROM PIXABAY API
 // app.get('/home', (req, res) => {
 //     axios.get('https://pixabay.com/api/?key=7703828-b2519c19690dcf8fd273b3f34&category=nature').then(response => {
 //         const j = response.data.hits;
@@ -65,7 +64,15 @@ massive(process.env.CONNECTION_STRING).then(db => {
 //     })
 // })
 
-app.get('/home/:userid', (req, res) => {
+//PULL QUOTE OF DAY FROM API
+app.get('/homes', (req, res) => {
+    axios.get('http://quotes.rest/qod.json').then(response => {
+        const data = response.data;
+        res.json(data)
+    })
+})
+
+app.get('/mydreams/:userid', (req, res) => {
     console.log('params', req.params)
     app.get('db').view_image(req.params.userid).then(images => {
         // console.log("hi", images)

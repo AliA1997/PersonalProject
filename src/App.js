@@ -3,6 +3,7 @@ import './App.css';
 import Login from './Components/Login/Login';
 import Home from './Components/Home/Home';
 import Upload from './Components/Upload/Upload';
+import MyBoard from './Components/Account/Myboard';
 // import Header from './Components/Header/Header';
 import {Route, Switch} from 'react-router-dom';
 
@@ -15,7 +16,7 @@ class App extends Component {
           <Route path='/home' component={Home} />
           {/* <Route path='/header' component={Header} /> */}
           {/* <Route path='/alterdream' component={Edit} /> */}
-          {/* <Route path='/searchdream' component={Search} /> */}
+          <Route path='/mydreams' component={MyBoard} />
           <Route path='/uploaddream' component={Upload} />
           </Switch>
       </div>

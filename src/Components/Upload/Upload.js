@@ -142,7 +142,7 @@ class Upload extends Component {
     _handleSubmit(e) {
       e.preventDefault();
       // TODO: do something with -> this.state.file
-      console.log('handle uploading-', this.state.file);
+      console.log('uploading-', this.state.file);
 
     }
 
