@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import logo from './../../logo.svg';
 import './Login.css';
 import {login} from '../../Ducks/Reducer';
@@ -11,6 +11,7 @@ let options = {
     theme: {
         logo: logo,
         primaryColor: "#13F9E4",
+        backgroundColor: "black",
     },
     languageDictionary: {
         title: "Dream Login"
@@ -20,7 +21,6 @@ let options = {
 class Login extends Component {
     constructor(){
         super();
-
         this.lock = null;
         this.login = this.login.bind(this);
     }
@@ -31,8 +31,7 @@ class Login extends Component {
         this.lock = new Auth0Lock(process.env.REACT_APP_AUTH0_CLIENT_ID, process.env.REACT_APP_AUTH0_DOMAIN, options);
             this.lock.on('authenticated', authResult => {
                     this.lock.getUserInfo(authResult.accessToken, (error, user) => {
-                        axios.post('/', {userId: user.sub}).then(response => {
-                            console.log(response.data.user);
+                        axios.post('/login', {userId: user.sub}).then(response => {
                             this.props.login(response.data.user);
                             this.props.history.push('/home');
                         })

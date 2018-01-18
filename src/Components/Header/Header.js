@@ -7,11 +7,11 @@ class Header extends Component {
         return (
             <div className='main-header-container'>
                 <div className='header'>
-                <h3>App Title Goes Here</h3>
+                <h3>SeizeMyDream</h3>
                 <Link to='/home' className='header-link'>Home</Link>
                 <Link to='/searchdreams' className='header-link'>Search</Link>
                 <Link to='/myaccount' className='header-link'>Account</Link>
-                <Link to='/myaccount' className='header-link'>Admin</Link>
+                <Link to='/uploaddream' className='header-link'>Upload</Link>
                 <Link to='/' className='header-link'>Logout</Link>
                 </div>
             </div>

@@ -1,4 +1,25 @@
 .image {
-    width: 350px;
+    width: 400px;
     height: 300px;
+    border-radius: 8pt;
+    position: relative;
+}
+
+.State {
+    margin: 25px;
+}
+
+/* .tiles {
+    padding-bottom: 100px;
+} */
+
+.dream-input {
+    margin: 15px 0 25px;
+}
+
+.image-text {
+   position: absolute;
+   bottom: 0;
+   width: 100%;
+   color: white;
 }
