@@ -1,1 +1,1 @@
-SELECT * FROM dream_images di WHERE user_id = $1 INNER JOIN users u on (di.user_id = u.user_id)
+SELECT users.email, users.name, dream_images.image_url, dream_images.image_text FROM users inner JOIN dream_images ON (users.id = dream_images.user_id) WHERE users.id = $1;

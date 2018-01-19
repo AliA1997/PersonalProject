@@ -7,14 +7,13 @@ const bodyParser = require('body-parser');
 const parser = require('xml2json');
 const multer = require('multer');
 const corsPrefetch = require('cors-prefetch-middleware');
-const imagesUpload = require('images-upload-middleware');
+const imagesUpload = require('images-upload-middleware')
+, actrl = require('./controllers/account_controller');
 
 
 const app = express();
 
 app.use(bodyParser.json());
-
-// app.use(corsPrefetch.json());
 
 app.use('/static', express.static(`./server/static`))
 
@@ -72,13 +71,15 @@ app.get('/homes', (req, res) => {
     })
 })
 
-app.get('/mydreams/:userid', (req, res) => {
+app.get('/myimages/:userid', (req, res) => {
     console.log('params', req.params)
     app.get('db').view_image(req.params.userid).then(images => {
         // console.log("hi", images)
         res.send(images)
     })
 })
+
+app.get('/mydreams/:userid', actrl.getAccount);
 
 //For Development purposes - Erase when using Auth
 app.post('/login', (req, res) => {
