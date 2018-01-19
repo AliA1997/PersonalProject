@@ -1,17 +1,19 @@
 .component {
-    width: 100vw;   
-}    
+  width: 100vw;
+  height: 100vh;
+  background-color: blue;
+}
 .previewComponent {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 700px;
-    margin: 0 auto;
-} 
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 700px;
+  margin: 65px auto;
+  background-color: bisque;
+}
 
 h3 {
-  margin-left: 15px
+  margin-left: 15px;
 }
 
 .fileInput {
@@ -24,28 +26,28 @@ h3 {
   cursor: pointer;
 }
 .imgPreview {
-    text-align: center;
-    margin: 0 auto;
-    height: 300px;
-    width: 400px;
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
-    border-top: 5px solid gray;
-    border-bottom: 5px solid gray
+  text-align: center;
+  margin: 0 auto;
+  height: 300px;
+  width: 400px;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  border-top: 5px solid gray;
+  border-bottom: 5px solid gray;
 }
 
 img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
-.previewText { 
-    width: 100%;
-    margin-top: 20px;
-  }
+.previewText {
+  width: 100%;
+  margin-top: 20px;
+}
 
 .submitButton {
   padding: 12px;
-  margin-left: 10px;
+  margin: 10px 0;
   background: white;
   border: 4px solid lightgray;
   border-radius: 15px;
@@ -60,17 +62,17 @@ img {
 }
 
 .caption {
-    width: 200px;
-    margin: 0 auto;
+  width: 200px;
+  margin: 10px auto;
 }
 
-.image-text{
-    color: black;
-    /* position: absolute; */
-   /* padding: 0 0 200px 0; */
-   border: solid black 1pt;
-   width: 250px;
-   height: 50px;
-   margin-bottom: 320px;
-   margin-left: 150px;
+.image-text {
+  color: black;
+  /* position: absolute; */
+  /* padding: 0 0 200px 0; */
+  border: solid black 1pt;
+  width: 250px;
+  height: 50px;
+  margin-bottom: 320px;
+  margin-left: 150px;
 }

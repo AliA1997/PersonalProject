@@ -1,3 +1,8 @@
 .login-page {
-    background: 
+    height: 100vh;
+    background: linear-gradient(to bottom, #5d00e0 7%,#bb90fc 31%,#a76bfb 60%,#a76bfb 71%,#842dfd 89%);
+}
+
+.title {
+    margin: 0;
 }

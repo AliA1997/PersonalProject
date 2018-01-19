@@ -4,6 +4,7 @@ import Masonry from "react-masonry-component";
 import { connect } from "react-redux";
 import Header from "../Header/Header";
 import "./Myboard.css";
+import MdClear from "react-icons/lib/md/clear";
 
 class Myboard extends Component {
   constructor(props) {
@@ -11,47 +12,30 @@ class Myboard extends Component {
     this.state = {
       contents: [],
       account: [],
+      name: "",
+      email: ""
     };
-    this.showAccountInfo = this.showAccountInfo.bind(this)
+    this.showAccountInfo = this.showAccountInfo.bind(this);
   }
   componentDidMount(props) {
     console.log("props", this.props);
     const { id } = this.props.user;
     axios.get(`/myimages/${id}`).then(response => {
-      // console.log(response, 'hello')
       const image = response.data;
-      //   const text = image.map(elem => {
-      //     return elem.image_text
-      //   })
-      //   const images = image.map(elem =>{
-      //     return elem.image_url
-      //   })
       console.log(image);
       this.setState({
         contents: image
       });
     });
+  }
+
+  showAccountInfo() {
+    const { id } = this.props.user;
     axios.get(`/mydreams/${id}`).then(response => {
       this.setState({
         account: response.data
-      })
-      const accountInfo = <h4>{this.state.account[0].name}</h4>
-      console.log(this.state.account)
-    })
-  }
-
-  showAccountInfo(){
-    <div>
-    <h4>{this.state.account[0].name}</h4>
-    <h5>{this.state.account[0].email}</h5></div> 
-      {this.state.account.map((elem, i) => {
-        return (
-          <div key={i}>
-          <h6>{elem.image_url}</h6>
-          <h6>{elem.image_text}</h6>
-          </div>
-        )
-      })}
+      });
+    });
   }
 
   render() {
@@ -71,8 +55,10 @@ class Myboard extends Component {
                     src={elem.image_url}
                     alt="display"
                     className="image"
-                    data-grid={{ x: 4, y: 0, w: 1, h: 2 }}
                   />
+                  <button>
+                    <MdClear />
+                  </button>
                   <h2 className="image-texts">
                     <span>{elem.image_text}</span>
                   </h2>
@@ -80,11 +66,22 @@ class Myboard extends Component {
               );
             })}
           </Masonry>
-          <div className='account-info'>
-                {this.state.account[0] ? 
-                <button onClick={this.showAccountInfo}>Show Account Info</button>: null}
-                  </div>
         </div>
+        <button onClick={this.showAccountInfo}>Show Account Info</button>
+        {this.state.account[0] ? (
+          <div className="account-info">
+            <h4>{this.state.account[0].name}</h4>
+            <h5>{this.state.account[0].email}</h5>
+            {this.state.account.map((elem, i) => {
+              return (
+                <div key={i}>
+                  <h6>{elem.image_url}</h6>
+                  <h6>{elem.image_text}</h6>
+                </div>
+              );
+            })}
+          </div>
+        ) : null}
       </div>
     );
   }

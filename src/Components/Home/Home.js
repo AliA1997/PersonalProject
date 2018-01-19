@@ -3,10 +3,10 @@ import Header from "../Header/Header";
 import axios from "axios";
 import "./Home.css";
 // import url from "../Url";
-import Masonry from 'react-masonry-component';
-// import Grid from "react-grid-layout";
+import Masonry from "react-masonry-component";
+import Grid from "react-grid-layout";
 // import Upload from "../Upload/Upload";
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 
 class Home extends Component {
   constructor() {
@@ -14,15 +14,14 @@ class Home extends Component {
     this.state = {
       contents: [],
       messages: [],
-      text: '',
-      quote: '',
+      text: "",
+      quote: "",
+      grid: false
     };
-    // this.handleClick = this.handleClick.bind(this);
+    this.handleGrid = this.handleGrid.bind(this);
+    this.backToMason = this.backToMason.bind(this);
     this.handleChange = this.handleChange.bind(this);
-   
   }
-
-
 
   componentDidMount() {
     axios.get("/home").then(response => {
@@ -38,28 +37,37 @@ class Home extends Component {
     //   })
     // })
   }
-    // axios.get("/home").then(response =>{
-    //     this.setState({
-    //         contents: response.data
-    //     })
-    // })
+  // axios.get("/home").then(response =>{
+  //     this.setState({
+  //         contents: response.data
+  //     })
+  // })
 
   handleChange(event) {
     this.setState({ text: event.target.value });
   }
 
-imageClick(){
-  
-}
+  handleGrid() {
+    this.setState({
+      grid: true
+    });
+  }
+
+  backToMason() {
+    this.setState({
+      grid: false
+    });
+  }
 
   render() {
     // console.log('state', this.state.contents)
     return (
       <div>
         <Header />
-        <h1>HomePage</h1>
-        {/* <p><b>Quote of the Day:</b> {this.state.quote}</p> */}
-        {/* <textarea
+        <div className="home-background">
+          <h1>HomePage</h1>
+          {/* <p><b>Quote of the Day:</b> {this.state.quote}</p> */}
+          {/* <textarea
           className="dream-input"
           onKeyPress={this.createMessage}
           onChange={this.handleChange}
@@ -67,23 +75,28 @@ imageClick(){
         />
         <br />
         <div className="text">{this.state.text}</div> */}
-          <div className='tile-box'>
-        <Masonry>
-          {this.state.contents.map((elem, i) => {
-            // {console.log('element', elem)}
-            return (
-              <div key={i} className='tiles'>
-               <img
-                    key="c"
-                    src={`https://s3-us-west-1.amazonaws.com/seize-the-dream/${
-                      elem.Key
-                    }`}
-                    alt="display"
-                    className="image"
-                    data-grid={{ x: 4, y: 0, w: 1, h: 2 }}
-                    onClick={this.imageClick}
-                  />
-                {/* <img
+          <div className="tile-boxes">
+            <button onClick={this.handleGrid}>
+              Click Here for Drag and Drop
+            </button>
+            <button onClick={this.backToMason}>Reset</button>
+            {this.state.grid ? (
+              <Grid>
+                {this.state.contents.map((elem, i) => {
+                  // {console.log('element', elem)}
+                  return (
+                    <div key={i} className="tiles">
+                      <img
+                        key="c"
+                        src={`https://s3-us-west-1.amazonaws.com/seize-the-dream/${
+                          elem.Key
+                        }`}
+                        alt="display"
+                        className="image"
+                        data-grid={{ x: 4, y: 0, w: 1, h: 2 }}
+                        onClick={this.imageClick}
+                      />
+                      {/* <img
                     onClick={this.imageClick}
                     src={elem.image_url}
                     alt="display"
@@ -91,26 +104,55 @@ imageClick(){
                     data-grid={{ x: 4, y: 0, w: 1, h: 2 }}
                   />
                  <h2 className='image-text'><span>{elem.image_text}</span></h2> */}
-              </div>
-            );
-          })}
-        </Masonry> 
+                    </div>
+                  );
+                })}
+              </Grid>
+            ) : (
+              <Masonry>
+                {this.state.contents.map((elem, i) => {
+                  // {console.log('element', elem)}
+                  return (
+                    <div key={i} className="tiles">
+                      <img
+                        key="c"
+                        src={`https://s3-us-west-1.amazonaws.com/seize-the-dream/${
+                          elem.Key
+                        }`}
+                        alt="display"
+                        className="image"
+                        data-grid={{ x: 4, y: 0, w: 1, h: 2 }}
+                        onClick={this.imageClick}
+                      />
+                      {/* <img
+                      onClick={this.imageClick}
+                      src={elem.image_url}
+                      alt="display"
+                      className="image"
+                      data-grid={{ x: 4, y: 0, w: 1, h: 2 }}
+                    />
+                   <h2 className='image-text'><span>{elem.image_text}</span></h2> */}
+                    </div>
+                  );
+                })}
+              </Masonry>
+            )}
           </div>
+        </div>
       </div>
     );
-}
-}
-
-function mapStateToProps(state){
-  // console.log(state)
-  return {
-    user: state.user
   }
 }
 
-{/* <button onClick={this.handleClick}><img src={elem} alt="display" className='image' /></button> */}
+function mapStateToProps(state) {
+  // console.log(state)
+  return {
+    user: state.user
+  };
+}
 
+{
+  /* <button onClick={this.handleClick}><img src={elem} alt="display" className='image' /></button> */
+}
 
 export default connect(mapStateToProps)(Home);
-
-
