@@ -1,15 +1,14 @@
 .component {
-  width: 100vw;
+  background: linear-gradient(to bottom, #ffffff 9%,#aa25e8 30%,#aa25e8 30%,#aa25e8 49%,#e5fff6 68%,#c123dd 82%,#efefef 94%); 
   height: 100vh;
-  background-color: blue;
 }
 .previewComponent {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 700px;
-  margin: 65px auto;
-  background-color: bisque;
+  margin: 10px auto;
+  /* background-color: blue; */
 }
 
 h3 {
@@ -24,16 +23,19 @@ h3 {
   padding: 10px;
   margin: 15px;
   cursor: pointer;
+  height: 10px;
+  width: 200px;
 }
 .imgPreview {
   text-align: center;
   margin: 0 auto;
   height: 300px;
   width: 400px;
-  border-left: 1px solid gray;
-  border-right: 1px solid gray;
-  border-top: 5px solid gray;
-  border-bottom: 5px solid gray;
+  border-left: 2px solid gray;
+  border-right: 2px solid gray;
+  border-top: 2px solid gray;
+  border-bottom: 2px solid gray;
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)); */
 }
 
 img {
@@ -68,11 +70,11 @@ img {
 
 .image-text {
   color: black;
-  /* position: absolute; */
+  position: absolute; 
   /* padding: 0 0 200px 0; */
-  border: solid black 1pt;
+  /* border: solid black 1pt;
   width: 250px;
   height: 50px;
-  margin-bottom: 320px;
-  margin-left: 150px;
+  /* margin-bottom: 135px;
+  margin-left: 110px; */
 }

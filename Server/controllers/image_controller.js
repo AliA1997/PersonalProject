@@ -1,6 +1,6 @@
 module.exports = {
   addImage(req, res) {
-    const { user_id, image_url, image_text } = req.params;
+    const { user_id, image_url, image_text } = req.body;
     req.app
       .get("db")
       .add_image(user_id, image_url, image_text)

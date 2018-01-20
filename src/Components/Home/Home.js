@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Header from "../Header/Header";
+import Header from "../header/Header";
 import axios from "axios";
 import "./Home.css";
 // import url from "../Url";
@@ -62,10 +62,10 @@ class Home extends Component {
   render() {
     // console.log('state', this.state.contents)
     return (
-      <div>
+      <div className='component'>
         <Header />
         <div className="home-background">
-          <h1>HomePage</h1>
+          {/* <h1>HomePage</h1> */}
           {/* <p><b>Quote of the Day:</b> {this.state.quote}</p> */}
           {/* <textarea
           className="dream-input"
@@ -75,11 +75,11 @@ class Home extends Component {
         />
         <br />
         <div className="text">{this.state.text}</div> */}
-          <div className="tile-boxes">
-            <button onClick={this.handleGrid}>
+        <button className='home-btn' onClick={this.handleGrid}>
               Click Here for Drag and Drop
             </button>
-            <button onClick={this.backToMason}>Reset</button>
+            <button className='home-btn' onClick={this.backToMason}>Reset</button>
+          <div className="tile-boxes">
             {this.state.grid ? (
               <Grid>
                 {this.state.contents.map((elem, i) => {
@@ -149,10 +149,6 @@ function mapStateToProps(state) {
   return {
     user: state.user
   };
-}
-
-{
-  /* <button onClick={this.handleClick}><img src={elem} alt="display" className='image' /></button> */
 }
 
 export default connect(mapStateToProps)(Home);

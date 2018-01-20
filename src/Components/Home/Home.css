@@ -1,3 +1,12 @@
+.home-background {
+    height: 100%;  
+    background:linear-gradient(to bottom, #ffffff 9%,#aa25e8 30%,#aa25e8 30%,#aa25e8 49%,#e5fff6 68%,#c123dd 82%,#efefef 94%); 
+}  
+.component {
+    font-family: 'Gloria Hallelujah', cursive;
+    
+}
+
 .image {
     width: 400px;
     height: 300px;
@@ -9,15 +18,15 @@ h1 {
     margin: 0;
 }
 
-.tiles {
-    /* display: flex;
+ /* .tiles {
+    display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
-	align-items: center; */
-    /* align-content: center; */
-    margin: 5px 12px;
-}
+	align-items: center;
+    align-content: center;
+    margin: 5px 10px;
+} */
 
 /* .dream-input {
     margin: 15px 0 25px;
@@ -31,6 +40,17 @@ h1 {
 }
 
 .tile-boxes {
-    background-color: white;
-    margin: 0 70px;
+    /* background-color: white; */
+    margin: 20px 70px;
+    position: relative;
+}
+
+.home-btn {
+    text-decoration: none;
+    color: #c123dd;
+    background: transparent;
+    font-weight: bold;
+    font-size: 13pt;
+    padding: 10px;
+    margin: 20px 5px;
 }

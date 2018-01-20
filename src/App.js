@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import Login from './Components/Login/Login';
-import Home from './Components/Home/Home';
-import Upload from './Components/Upload/Upload';
-import MyBoard from './Components/Account/Myboard';
-import Edit from './Components/Edit/Edit';
+import Login from './components/login/Login';
+import Home from './components/home/Home';
+import Upload from './components/upload/Upload';
+import MyBoard from './components/account/Myboard';
+import Edit from './components/edit/Edit';
 import {Route, Switch} from 'react-router-dom';
 
 class App extends Component {

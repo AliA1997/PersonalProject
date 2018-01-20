@@ -2,8 +2,11 @@ import React, { Component } from "react";
 // import ImagesUploader from 'react-images-uploader';
 // import 'react-images-uploader/styles.css';
 // import 'react-images-uploader/font.css'
-import Header from "../Header/Header";
+import Header from "../header/Header";
 import "./Upload.css";
+import axios from 'axios';
+import {connect} from 'react-redux';
+// import glamourous from 'glamorous';
 
 // const upload = require('superagent');
 // import ReactUpload from 'react-s3-upload';
@@ -139,7 +142,18 @@ class Upload extends Component {
   _handleSubmit(e) {
     e.preventDefault();
     // TODO: do something with -> this.state.file
-    console.log("uploading-", this.state.file);
+    console.log("uploading-", this.state.file, this.state.text, this.props.user);
+    const {id} = this.props.user
+    axios.post(`/uploadimage/${id}`, (req, res) => {
+      req.body = {
+        user_id: id,
+        image_url: this.state.file,
+        image_text: this.state.text,
+      }
+      console.log(req.body)
+    }).then(response => {
+        this.props.history.push('')
+    })
   }
 
   _handleTextChange(e) {
@@ -152,24 +166,24 @@ class Upload extends Component {
   _handleImageChange(e) {
     e.preventDefault();
 
-    let reader = new FileReader();
-    let file = e.target.files[0];
+    // let reader = new FileReader();
+    let file = e.target.value;
 
-    reader.onloadend = () => {
+    // reader.onloadend = () => {
       this.setState({
         file: file,
-        imagePreviewUrl: reader.result
+        // imagePreviewUrl: reader.result
       });
-    };
+    // };
 
-    reader.readAsDataURL(file);
+    // reader.readAsDataURL(file);
   }
 
   render() {
-    let { imagePreviewUrl } = this.state;
+    let { file } = this.state;
     let $imagePreview = null;
-    if (imagePreviewUrl) {
-      $imagePreview = <img src={imagePreviewUrl} alt="display" />;
+    if (file) {
+      $imagePreview = <img src={file} alt="display" />;
     } else {
       $imagePreview = (
         <div className="previewText">Please select an Image for Preview</div>
@@ -181,9 +195,8 @@ class Upload extends Component {
         <Header />
         <div className="previewComponent">
           <form onSubmit={e => this._handleSubmit(e)}>
-            <input
+            Image Url: <input
               className="fileInput"
-              type="file"
               onChange={e => this._handleImageChange(e)}
             />
           </form>
@@ -209,4 +222,10 @@ class Upload extends Component {
   }
 }
 
-export default Upload;
+function mapStateToProps(state){
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(Upload);

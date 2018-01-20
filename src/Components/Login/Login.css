@@ -1,7 +1,9 @@
 .login-page {
     height: 100vh;
-    background: linear-gradient(to right, #dddddd 9%,#376c83 32%,#08a3fc 63%,#064184 75%,#757575 91%,#000000 98%,#000000 100%);
+    background: linear-gradient(to bottom, #ffffff 9%,#aa25e8 30%,#aa25e8 30%,#aa25e8 49%,#e5fff6 68%,#c123dd 82%,#efefef 94%);
     /* background: linear-gradient(to bottom, #5d00e0 7%,#bb90fc 31%,#a76bfb 60%,#a76bfb 71%,#842dfd 89%); */
+    padding: 100px;
+    color: white;
 }
 
 
@@ -9,12 +11,18 @@
     width: 450px;
     height: 250px;
     border-radius: 5pt;
-    border: solid grey 2pt;
+    border: solid #C123dd 2pt;
     box-shadow: 10px 10px 49px 3px rgba(0,0,0,0.75);
     padding-top: 150px;
     margin: 0 auto;
 }
-/* .title {
-    margin: 0;
-} */
 
+.home-btn-login {
+    color: white;
+    text-decoration: none;
+    background: transparent;
+    font-weight: bold;
+    font-size: 13pt;
+    padding: 10px;
+    margin: 20px 5px;
+}

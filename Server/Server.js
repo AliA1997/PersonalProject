@@ -88,6 +88,15 @@ app.get("/myimages/:userid", (req, res) => {
 app.get("/mydreams/:userid", actrl.getAccount);
 app.post("/uploadimage/:userid", ictrl.addImage);
 
+app.delete("/deletedream/:id/:userid", (req, res) => {
+  app
+    .get("db")
+    .delete_image(req.params.id, req.params.userid)
+    .then(images => {
+      res.send(images);
+    });
+});
+
 //For Development purposes - Erase when using Auth
 app.post("/login", (req, res) => {
   req.session.user = {
