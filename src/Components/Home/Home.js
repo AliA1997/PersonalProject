@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Header from "../header/Header";
 import axios from "axios";
-import "./Home.css";
+import "../styles/Home.css";
 // import url from "../Url";
 import Masonry from "react-masonry-component";
 import Grid from "react-grid-layout";

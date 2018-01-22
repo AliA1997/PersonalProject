@@ -4,7 +4,7 @@ import Grid from 'react-grid-layout';
 import Masonry from "react-masonry-component";
 import { connect } from "react-redux";
 import Header from "../header/Header";
-import "./Myboard.css";
+import "../styles/Myboard.css";
 import MdClear from "react-icons/lib/md/clear";
 
 class Myboard extends Component {

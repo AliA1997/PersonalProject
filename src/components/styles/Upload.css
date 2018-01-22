@@ -1,5 +1,5 @@
 .component {
-  background: linear-gradient(to bottom, #ffffff 9%,#aa25e8 30%,#aa25e8 30%,#aa25e8 49%,#e5fff6 68%,#c123dd 82%,#efefef 94%); 
+  /* background: linear-gradient(to bottom, #ffffff 9%,#aa25e8 30%,#aa25e8 30%,#aa25e8 49%,#e5fff6 68%,#c123dd 82%,#efefef 94%);  */
   height: 100vh;
 }
 .previewComponent {

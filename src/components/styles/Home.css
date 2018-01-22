@@ -1,13 +1,30 @@
 .home-background {
     height: 100%;  
-    background:linear-gradient(to bottom, #ffffff 9%,#aa25e8 30%,#aa25e8 30%,#aa25e8 49%,#e5fff6 68%,#c123dd 82%,#efefef 94%); 
+    /* background:linear-gradient(to bottom, #ffffff 9%,#aa25e8 30%,#aa25e8 30%,hsl(281, 81%, 53%) 49%,#e5fff6 68%,#c123dd 82%,#efefef 94%);  */
+    /* justify-content: center; */
+    background-color: blue;
 }  
 .component {
     font-family: 'Gloria Hallelujah', cursive;
-    
+    background-color: #c123dd;
 }
-
-.image {
+.tile-boxes {
+    background-color: green;
+    justify-content: center;
+}
+.tiles {
+    background: purple;
+    margin: 0 auto;
+}
+.home-btn {
+    background-color: black;
+    margin-left: 25px;
+}
+.logo {
+    height: 150px;
+    width: 150px;
+}
+/* .image {
     width: 400px;
     height: 300px;
     border-radius: 8pt;
@@ -16,21 +33,23 @@
 
 h1 {
     margin: 0;
+    background-clip: green;
 }
 
- /* .tiles {
+ .tiles {
     display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
     align-content: center;
+    background-color: blue;
     margin: 5px 10px;
-} */
+}
 
-/* .dream-input {
+.dream-input {
     margin: 15px 0 25px;
-} */
+}
 
 .image-text {
    position: absolute;
@@ -40,9 +59,11 @@ h1 {
 }
 
 .tile-boxes {
-    /* background-color: white; */
+    background-color: white;
     margin: 20px 70px;
     position: relative;
+    display: flex;
+    background-color: red;
 }
 
 .home-btn {
@@ -53,4 +74,4 @@ h1 {
     font-size: 13pt;
     padding: 10px;
     margin: 20px 5px;
-}
+} */

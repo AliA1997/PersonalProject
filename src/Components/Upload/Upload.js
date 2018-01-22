@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // import 'react-images-uploader/styles.css';
 // import 'react-images-uploader/font.css'
 import Header from "../header/Header";
-import "./Upload.css";
+import "../styles/Upload.css";
 import axios from 'axios';
 import {connect} from 'react-redux';
 // import glamourous from 'glamorous';
