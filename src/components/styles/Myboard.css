@@ -6,10 +6,10 @@
 }
 
 
-
+/* 
 .image-tiles {
     display: inline-block;
-}
+} */
 
 .image-texts {
    position: absolute;
@@ -33,7 +33,7 @@ h6 {
 .delete-btn { 
     text-decoration: none;
     color: white;
-    background: transparent;
+    background: blue;
     text-align: center;
     width: 100px;
     height: 50px;

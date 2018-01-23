@@ -7,6 +7,7 @@ import Masonry from "react-masonry-component";
 import Grid from "react-grid-layout";
 // import Upload from "../Upload/Upload";
 import { connect } from "react-redux";
+import {login} from '../../ducks/reducer';
 
 class Home extends Component {
   constructor() {
@@ -21,28 +22,39 @@ class Home extends Component {
     this.handleGrid = this.handleGrid.bind(this);
     this.backToMason = this.backToMason.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.showQuote = this.showQuote.bind(this);
   }
 
   componentDidMount() {
-    axios.get("/home").then(response => {
-      let res = response.data.ListBucketResult.Contents;
-      this.setState({
-        contents: res
+    axios.get('/user-data').then(response => {
+      const user = response.data
+      this.props.login(response.data)
+      axios.get(`/myimages/${user.id}`).then(response => {
+        axios.get("/home").then(response => {
+          let res = response.data.ListBucketResult.Contents;
+          this.setState({
+            contents: res
+          });
+        })
       });
+    }).catch(() => {
+      this.props.history.push('/')
     });
-    // axios.get('/homes').then(response => {
-    //   let q = response.data.contents.quotes[0].quote;
+    // axios.get("/home").then(response => {
+    //   let res = response.data.ListBucketResult.Contents;
     //   this.setState({
-    //     quote: q
-    //   })
-    // })
+    //     contents: res
+    //   });
+    // });
   }
-  // axios.get("/home").then(response =>{
-  //     this.setState({
-  //         contents: response.data
-  //     })
-  // })
-
+  showQuote(){
+    axios.get('/homes').then(response => {
+      let q = response.data.contents.quotes[0].quote;
+      this.setState({
+        quote: q
+      })
+    })
+  }
   handleChange(event) {
     this.setState({ text: event.target.value });
   }
@@ -60,13 +72,15 @@ class Home extends Component {
   }
 
   render() {
-    // console.log('state', this.state.contents)
+ 
     return (
       <div className='component'>
         <Header />
         <div className="home-background">
           {/* <h1>HomePage</h1> */}
-          {/* <p><b>Quote of the Day:</b> {this.state.quote}</p> */}
+          <button onClick={this.showQuote}>Show Quote</button>
+          {this.state.quote ?
+          <p><b>Quote of the Day:</b> {this.state.quote}</p> : null}
           {/* <textarea
           className="dream-input"
           onKeyPress={this.createMessage}
@@ -151,4 +165,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, {login})(Home);

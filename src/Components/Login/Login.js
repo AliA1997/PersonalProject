@@ -51,8 +51,7 @@ class Login extends Component {
     return (
       <div className="login-page">
         <div className='login-head'>
-        <img className='seize' src={newLogo}/>
-          {/* <h1 className="title">Seize My Dream</h1> */}
+        <img className='seize' src={newLogo} alt=''/>
           </div>
         <div className="login-box">
           <button className="home-btn-login" onClick={this.login}>

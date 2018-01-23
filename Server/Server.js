@@ -85,9 +85,23 @@ app.get("/myimages/:userid", (req, res) => {
     });
 });
 
+
+//JOIN statement, needs Update
 app.get("/mydreams/:userid", actrl.getAccount);
+
+//Upload Image
 app.post("/uploadimage/:userid", ictrl.addImage);
 
+app.get('/getcategory', (req, res) => {
+  app.get('db')
+  .get_cat()
+  .then(categories => {
+    res.send(categories);
+  })
+})
+
+
+//Delete Image
 app.delete("/deletedream/:id/:userid", (req, res) => {
   app
     .get("db")
@@ -97,49 +111,60 @@ app.delete("/deletedream/:id/:userid", (req, res) => {
     });
 });
 
+//Edit Image
+app.get(`/alterdream/:id`, (req, res) => {
+  app.get('db')
+  .get_image([req.params.id])
+  .then(image => {
+    res.send(image)
+  })
+})
+
+//Update image in Database
+app.patch(`/alterdream/:text/:id`, (req, res) => {
+  app.get('db')
+  .update_image(req.params.text, req.params.id)
+  .then(() => {
+    res.send('')
+  })
+})
+
+//Logout
+app.post('/logout', (req, res) => {
+  req.session.destroy();
+  res.send();
+})
+
+
 //For Development purposes - Erase when using Auth
 app.post("/login", (req, res) => {
-  req.session.user = {
-    id: 1,
-    name: "Brent Eckert",
-    email: "brent.eckert7@gmail.com",
-    auth0_id: "github|30614957",
-    social: "https://avatars2.githubusercontent.com/u/30614957?v=4"
-  };
-  res.json({ user: req.session.user });
+  const { userId } = req.body;
+  const auth0Url = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/api/v2/users/${userId}`;
+  axios.get(auth0Url, {
+      headers: {
+          Authorization: 'Bearer ' + process.env.AUTH0_MANAGEMENT_ACCESS_TOKEN
+      }
+  }).then(response => {
+      //Set User Data Object
+      const userData = response.data;
+      //Find if user is already in database.
+      app.get('db').find_user(userData.user_id).then(users => {
+          if(users.length){
+              req.session.user = users[0];
+              res.json({ user: req.session.user })
+          } else {
+              //If no user in Database, Create new User.
+              app.get('db').create_user([userData.user_id, userData.name, userData.email, userData.picture]).then(user => {
+                  req.session.user = user[0];
+                  res.json({ user: req.session.user });
+              })
+          }
+      }).catch(err => console.log('sup', err))
+  }).catch(err => {
+      console.log('USER', err);
+      res.status(500).json({message: 'Server 500'});
+  })
 });
-// const { userId } = req.body;
-// console.log("user", userId)
-// const auth0Url = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/api/v2/users/${userId}`;
-// // console.log("1")
-// axios.get(auth0Url, {
-//     headers: {
-//         Authorization: 'Bearer ' + process.env.AUTH0_MANAGEMENT_ACCESS_TOKEN
-//     }
-// }).then(response => {
-//     //Set User Data Object
-//     const userData = response.data;
-//     // console.log("4", userData)
-//     //Find if user is already in database.
-//     app.get('db').find_user(userData.user_id).then(users => {
-//         if(users.length){
-//             // console.log('2')
-//             req.session.user = users[0];
-//             // console.log(users[0])
-//             res.json({ user: req.session.user })
-//         } else {
-//             //If no user in Database, Create new User.
-//             // console.log('3')
-//             app.get('db').create_user([userData.user_id, userData.name, userData.email, userData.picture]).then(user => {
-//                 req.session.user = user[0];
-//                 res.json({ user: req.session.user });
-//             })
-//         }
-//     }).catch(err => console.log('sup', err))
-// }).catch(err => {
-//     console.log('USER', err);
-//     res.status(500).json({message: 'Server 500'});
-// })
 
 //Attempting to use react-images-uploader
 // app.post('/notmultiple', imagesUpload(
@@ -147,11 +172,19 @@ app.post("/login", (req, res) => {
 //     'http://localhost:3035/static/files'
 // ));
 
-app.get("/user-data", (req, res) => {
+function checkLoggedIn(req, res, next) {
+  if (req.session.user) {
+    next();
+  } else {
+    res.status(403).json({ message: 'Unauthorized' });
+  }
+}
+
+app.get("/user-data", checkLoggedIn, (req, res) => {
   if (req.session.user) {
     res.status(200).send(req.session.user);
   } else {
-    res.status(403);
+    res.status(403).send('You must login');
   }
 });
 

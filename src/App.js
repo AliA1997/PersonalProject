@@ -14,7 +14,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/(access_token.*)?' component={Login} />
           <Route path='/home' component={Home} />
-          <Route path='/alterdream' component={Edit} />
+          <Route path='/alterdream/:id' component={Edit} />
           <Route path='/mydreams' component={MyBoard} />
           <Route path='/uploaddream' component={Upload} />
           </Switch>

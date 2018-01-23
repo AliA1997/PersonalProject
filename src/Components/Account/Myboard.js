@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 import Header from "../header/Header";
 import "../styles/Myboard.css";
 import MdClear from "react-icons/lib/md/clear";
+import {Link} from 'react-router-dom';
+import {login} from '../../ducks/reducer';
 
 class Myboard extends Component {
   constructor(props) {
@@ -16,26 +18,32 @@ class Myboard extends Component {
       name: "",
       email: "",
       grid: false,
+      // id: null,
+      // url: '',
+      // text: '',
     };
     this.showAccountInfo = this.showAccountInfo.bind(this);
     this.deleteImage = this.deleteImage.bind(this);
     this.handleGrid = this.handleGrid.bind(this);
     this.backToMason = this.backToMason.bind(this);
   }
-      componentDidMount(props) {
-    console.log("props", this.props);
-    const { id } = this.props.user;
-    axios.get(`/myimages/${id}`).then(response => {
-      const image = response.data;
-      console.log(image);
-      this.setState({
-        contents: image
+  componentDidMount(props) {
+    axios.get('/user-data').then(response => {
+      const user = response.data
+      this.props.login(response.data)
+      axios.get(`/myimages/${user.id}`).then(response => {
+        const image = response.data;
+        console.log(image);
+        this.setState({
+          contents: image
+        });
       });
+    }).catch(() => {
+      this.props.history.push('/')
     });
   }
 
   showAccountInfo(props) {
-    console.log(this.props, 'propS')
     const { id } = this.props.user;
     axios.get(`/mydreams/${id}`).then(response => {
       this.setState({
@@ -45,9 +53,7 @@ class Myboard extends Component {
   }
 
   deleteImage(id){
-    console.log(id);
     axios.delete(`/deletedream/${id}/${this.props.user.id}`).then(response => {
-      console.log(response.data);
       this.setState({
         contents: response.data
       })
@@ -90,9 +96,10 @@ class Myboard extends Component {
                         className="image"
                       />
                       <h2 className="image-texts">
-                      <button className='delete-btn' onClick={() => {this.deleteImage(elem.id)}}>Delete
-                  {/* <span><MdClear /></span> */}
-                  </button>
+                      {/* <button className='delete-btn' onClick={() => {this.deleteImage(elem.id)}}>Update
+                      </button>
+                      <button className='delete-btn' onClick={() =>
+                      {this.editImage(elem.id, elem.image_url, elem.image_text)}}>Edit</button> */}
                         <span>{elem.image_text}</span>
                         {/* <div className='delete-btn'>
                         <button onClick={() => {this.deleteImage(elem.id)}}>Delete
@@ -118,8 +125,8 @@ class Myboard extends Component {
                 <div>
                 <h2 className="image-texts">
                 <button className='delete-btn' onClick={() => {this.deleteImage(elem.id)}}>Delete
-                  {/* <span><MdClear /></span> */}
                   </button>
+                  <Link to={`/alterdream/${elem.id}`}><button className='delete-btn'>Edit</button></Link>
                   <span>{elem.image_text}</span>
                 </h2>
                 </div>
@@ -155,4 +162,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Myboard);
+export default connect(mapStateToProps, {login})(Myboard);

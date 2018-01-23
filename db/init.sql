@@ -12,3 +12,4 @@ user_id INT NOT NULL REFERENCES users,
 image_url TEXT,
 image_text TEXT
 );
+

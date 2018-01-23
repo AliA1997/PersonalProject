@@ -8,17 +8,23 @@ class Header extends Component {
         return (
             <div className='main-header-container'>
                 <div className='header'>
-                <img className='logo' src={logo} />
+                <img className='logo' src={logo} alt=''/>
                 <Link to ='/home'><h2 className='header-link'>SeizeMyDream</h2></Link>
                 <Link to='/mydreams' className='header-link'>My Dreams</Link>
                 {/* <Link to='/alterdream' className='header-link'>Edit</Link> */}
                 <Link to='/uploaddream' className='header-link'>Upload</Link>
-                <Link to='/' className='header-link'>Logout</Link>
+                <Link to='/' className='header-link' onClick={this.logout}>Logout</Link>
                 </div>
             </div>
         )
     }
 }
+
+// function mapStateToProps(state){
+//     return {
+//         user: state.user
+//     }
+// }
 
 
 

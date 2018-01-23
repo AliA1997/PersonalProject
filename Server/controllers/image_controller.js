@@ -1,13 +1,17 @@
 module.exports = {
   addImage(req, res) {
-    const { user_id, image_url, image_text } = req.body;
+    const { user_id, image_url, image_text, category} = req.body;
     req.app
       .get("db")
-      .add_image(user_id, image_url, image_text)
+      .add_image(user_id, image_url, image_text, category)
       .then(() => {
-        view_image(user_id).then(images => {
-          res.send(info);
-        });
+        res.status(200).send('OK');
       });
   }
+
+  // editImage(req, res){
+  //   req.app
+  //     .get("db")
+  //     .
+  // }
 };
