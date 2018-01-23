@@ -52,7 +52,6 @@ app.get("/home", (req, res) => {
     .then(response => {
       var json = parser.toJson(response.data);
       var j = JSON.parse(json);
-      // console.log(json);
       res.status(200).json(j);
     });
 });

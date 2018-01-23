@@ -78,17 +78,19 @@ class Home extends Component {
         <Header />
         <div className="home-background">
           {/* <h1>HomePage</h1> */}
+          <div className='quote'>
           <button onClick={this.showQuote}>Show Quote</button>
           {this.state.quote ?
           <p><b>Quote of the Day:</b> {this.state.quote}</p> : null}
+          </div>
           {/* <textarea
           className="dream-input"
           onKeyPress={this.createMessage}
           onChange={this.handleChange}
           value={this.state.text}
-        />
-        <br />
-        <div className="text">{this.state.text}</div> */}
+          />
+          <br />
+          <div className="text">{this.state.text}</div> */}
         <button className='home-btn' onClick={this.handleGrid}>
               Click Here for Drag and Drop
             </button>

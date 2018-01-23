@@ -54,5 +54,5 @@ h6 {
 
 .image-container:hover .delete-btn {
     opacity: 1;
-    bottom: 50;
+    margin: 0 auto;
 }

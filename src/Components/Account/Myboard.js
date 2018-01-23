@@ -123,10 +123,10 @@ class Myboard extends Component {
                   className="image"
                 />
                 <div>
-                <h2 className="image-texts">
                 <button className='delete-btn' onClick={() => {this.deleteImage(elem.id)}}>Delete
                   </button>
                   <Link to={`/alterdream/${elem.id}`}><button className='delete-btn'>Edit</button></Link>
+                <h2 className="image-texts">
                   <span>{elem.image_text}</span>
                 </h2>
                 </div>
@@ -135,7 +135,6 @@ class Myboard extends Component {
           })}
         </Masonry>
         )}
-        </div>
         <button className='home-btn' onClick={this.showAccountInfo}>Show Account Info</button>
         {account[0] ? (
           <div className="account-info">
@@ -151,6 +150,7 @@ class Myboard extends Component {
             })}
           </div>
         ) : null}
+        </div>
       </div>
     );
   }

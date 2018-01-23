@@ -1,7 +1,7 @@
 .login-page {
     height: 100vh;
-    background-image: url('https://mfiles.alphacoders.com/614/614008.jpg');
-    /* background: linear-gradient(to bottom, #5d00e0 7%,#bb90fc 31%,#a76bfb 60%,#a76bfb 71%,#842dfd 89%); */
+    /* background-image: url('https://mfiles.alphacoders.com/614/614008.jpg'); */
+    background: radial-gradient(ellipse at center, rgba(179,220,237,1) 0%, #29b8e5 50%, rgba(188,224,238,1) 100%);
     color: white;
     background-blend-mode: luminosity;
     opacity: 0.9;
@@ -11,7 +11,7 @@
     display: inline-flex;
     flex-direction: row;
     justify-content: center;
-    background-color: #3df9ff;
+    background-color: #29b8e5;
     font-family: 'Shadows Into Light', cursive;
     border-bottom: solid black 2pt;
     width: 100vw;
@@ -33,22 +33,23 @@
 
 
 .login-box {
-    width: 250px;
-    height: 200px;
+    width: 20vw;
+    height: 25vh;
     border-radius: 5pt;
     border: solid #5e5e5e 2pt;
     box-shadow: 10px 10px 49px 3px rgba(0,0,0,0.75);
     margin: 18vh auto;
+    text-align: center;
 }
 
 /* @media .login-box(min-width) */
 
 .home-btn-login {
-    color: white;
+    color: rgb(65, 197, 250);
     text-decoration: none;
-    background-color: #3df9ff;
+    background-color: #ffffff;
     font-weight: bold;
-    font-size: 13pt;
+    font-size: 1.5em;
     padding: 15px;
-    margin: 70px 45px;
+    margin: 10vh auto;
 }
