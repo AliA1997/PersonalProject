@@ -1,6 +1,6 @@
-.login-page {
+/* .login-page {
     height: 100vh;
-    /* background-image: url('https://mfiles.alphacoders.com/614/614008.jpg'); */
+    background-image: url('https://mfiles.alphacoders.com/614/614008.jpg');
     background: radial-gradient(ellipse at center, rgba(179,220,237,1) 0%, #29b8e5 50%, rgba(188,224,238,1) 100%);
     color: white;
     background-blend-mode: luminosity;
@@ -18,7 +18,7 @@
     color: white;
     height: 18vh;
     font-size: 14pt;
-    /* opacity: 0.6 */
+    opacity: 0.6
 }
 
 .seize {
@@ -27,12 +27,12 @@
 }
 .title{
     margin-top: 4vh;
-}
+} */
 
 
 
 
-.login-box {
+/* .login-box {
     width: 20vw;
     height: 25vh;
     border-radius: 5pt;
@@ -40,11 +40,11 @@
     box-shadow: 10px 10px 49px 3px rgba(0,0,0,0.75);
     margin: 18vh auto;
     text-align: center;
-}
+} */
 
 /* @media .login-box(min-width) */
 
-.home-btn-login {
+/* .home-btn-login {
     color: rgb(65, 197, 250);
     text-decoration: none;
     background-color: #ffffff;
@@ -52,4 +52,45 @@
     font-size: 1.5em;
     padding: 15px;
     margin: 10vh auto;
+} */
+
+.login-page {
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.seize {
+    height: 40%;
+    width: 40%;
+    margin: 0 auto;
+}
+
+.login-box {
+    margin: 20% auto;
+    background-color: purple;
+    width: 50%;
+    padding: 5%;
+    border-radius: 50%;
+}
+
+.btn-login {
+    margin-left: 25%;
+    width: 50%;
+    border: solid black 1pt;
+    background: white;
+    font-size: 8pt;
+    color: purple;
+    padding: 5%;
+}
+
+@media screen and (min-width: 800px){
+    .btn-login {
+        font-size: 18pt;
+    }
+    .login-box {
+        margin: 5% auto;
+    }
 }

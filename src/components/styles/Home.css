@@ -1,83 +1,39 @@
-.home-background {
-    height: 100%;  
-    /* background:linear-gradient(to bottom, #ffffff 9%,#aa25e8 30%,#aa25e8 30%,hsl(281, 81%, 53%) 49%,#e5fff6 68%,#c123dd 82%,#efefef 94%);  */
-    /* justify-content: center; */
-    background-color: blue;
-}  
-.component {
-    font-family: 'Gloria Hallelujah', cursive;
-    background-color: #c123dd;
-}
-.tile-boxes {
-    background-color: green;
-    justify-content: center;
-}
-.tiles {
-    background: purple;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 0 auto;
-}
-.home-btn {
-    background-color: black;
-    margin-left: 25px;
-}
-.logo {
-    height: 150px;
-    width: 150px;
-}
-b {
-    font-size: 14pt;
-}
-/* .image {
+.image {
     width: 400px;
     height: 300px;
     border-radius: 8pt;
     position: relative;
 }
 
-h1 {
-    margin: 0;
-    background-clip: green;
-}
-
- .tiles {
+.home-background {
     display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-    align-content: center;
-    background-color: blue;
-    margin: 5px 10px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-.dream-input {
-    margin: 15px 0 25px;
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
-.image-text {
-   position: absolute;
-   bottom: 0;
-   width: 100%;
-   color: white;
+.quote{
+    margin: 20px;
 }
 
-.tile-boxes {
+#tile-background {
     background-color: white;
-    margin: 20px 70px;
-    position: relative;
-    display: flex;
-    background-color: red;
+    width: 87vw;
+    margin: 0 auto;
+    border: solid purple 2pt;
 }
 
 .home-btn {
-    text-decoration: none;
-    color: #c123dd;
-    background: transparent;
-    font-weight: bold;
-    font-size: 13pt;
+    margin: 10px;
+    font-family: 'Source code pro', cursive;
+    background-color: purple;
     padding: 10px;
-    margin: 20px 5px;
-} */
+    color: white;
+    border: solid white 2pt;
+}

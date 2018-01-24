@@ -78,17 +78,22 @@ class Myboard extends Component {
     return (
       <div className='component'>
         <Header />
-        <button className='home-btn' onClick={this.handleGrid}>
+        <div className='board-background'>
+          <div className='buttons'>
+              <button className='myboard-btn' onClick={this.handleGrid}>
               Click Here for Drag and Drop
-            </button>
-            <button className='home-btn' onClick={this.backToMason}>Reset</button>
-        <div className="tile-boxes">
+              </button>
+            
+              <button className='myboard-btn' onClick={this.backToMason}>Reset</button>
+          </div>
+        </div>
+        <div id="tile-background">
         {this.state.grid ? (
                 <Grid>
                 {contents.map((elem, i) => {
                   // {console.log('element', elem)}
                   return (
-                    <div key={i} className="image-container">
+                    <div key={i} className='tiles'>
                       <img
                         onClick={this.imageClick}
                         src={elem.image_url}
@@ -96,54 +101,44 @@ class Myboard extends Component {
                         className="image"
                       />
                       <h2 className="image-texts">
-                      {/* <button className='delete-btn' onClick={() => {this.deleteImage(elem.id)}}>Update
-                      </button>
-                      <button className='delete-btn' onClick={() =>
-                      {this.editImage(elem.id, elem.image_url, elem.image_text)}}>Edit</button> */}
                         <span>{elem.image_text}</span>
-                        {/* <div className='delete-btn'>
-                        <button onClick={() => {this.deleteImage(elem.id)}}>Delete
-                        </button>
-                        </div> */}
                       </h2>
-                    </div>
+                      </div>
                   );
                 })}
               </Grid>
-        ) : (
+              ) : (
           <Masonry>
           {contents.map((elem, i) => {
-            // {console.log('element', elem)}
             return (
-              <div key={i} className="image-container">
+              <div key={i} className='tiles'>
                 <img
                   onClick={this.imageClick}
                   src={elem.image_url}
                   alt="display"
                   className="image"
                 />
-                <div>
-                <button className='delete-btn' onClick={() => {this.deleteImage(elem.id)}}>Delete
-                  </button>
-                  <Link to={`/alterdream/${elem.id}`}><button className='delete-btn'>Edit</button></Link>
+                <button className='delete-btn' onClick={() => {this.deleteImage(elem.id)}}>DELETE</button>
+                  <Link to={`/alterdream/${elem.id}`}><button className='edit-btn'>EDIT</button></Link>
                 <h2 className="image-texts">
                   <span>{elem.image_text}</span>
                 </h2>
-                </div>
               </div>
             );
           })}
         </Masonry>
         )}
-        <button className='home-btn' onClick={this.showAccountInfo}>Show Account Info</button>
+        </div>
+        <div className='account-info'>
+        <button className='myboard-btn' onClick={this.showAccountInfo}>Show Account Info</button>
         {account[0] ? (
           <div className="account-info">
             <h4>{account[0].name}</h4>
             <h5>{account[0].email}</h5>
             {account.map((elem, i) => {
               return (
-                <div key={i}>
-                  <h6><b>Image:</b> {elem.image_url} <b>/ Text:</b> {elem.image_text}</h6>
+                <div key={i} className='account-info-detail'>
+                  <h6><b>Image:</b> {elem.image_url} <b>/ Text:</b> {elem.image_text} <b>/ Category</b>{elem.category_name}</h6>
                   
                 </div>
               );

@@ -1,58 +1,62 @@
-  .image {
+.image {
     width: 400px;
     height: 300px;
     border-radius: 8pt;
     position: relative;
 }
+.image-container {
+    display: flex;
+    flex-direction: row;
+}
 
+.tile-boxes {
+    border: solid purple 2pt;
+    width: 87vw;
+}
 
-/* 
-.image-tiles {
-    display: inline-block;
-} */
+.account-info {
+    margin: 0 auto;
+}
 
 .image-texts {
    position: absolute;
-   bottom: 0;
+   bottom: 25px;;
    width: 100%;
    color: white;
 }
-
-.tile-box {
-    padding-left: 100px;
-}
-
-h6 > b {
-    font-size: 14pt;
-}
-
-h6 {
-    font-size: 11pt;
-}
-
 .delete-btn { 
     text-decoration: none;
-    color: white;
-    background: blue;
+    position: absolute;
+    color: rgb(255, 6, 255);
+    bottom: 0;
+    left: 100px;
+    background: transparent;
     text-align: center;
     width: 100px;
     height: 50px;
     font-size: 16pt;
+    font-weight: 700;
     opacity: 0;
-}
-
-
-/* .home-btn {
+} 
+.edit-btn { 
     text-decoration: none;
-    color: #5d00e0;
-    background: white;
-    /* height: 100px;
-    width: 100px; */
-    /* padding: 10px; */
-    /* font-size: 18pt; */
-    /* margin: 20px 5px; */
+    position: absolute;
+    color: rgb(255, 6, 255);
+    bottom: 0;
+    left: 0;
+    background: transparent;
+    width: 100px;
+    height: 50px;
+    font-size: 16pt;
+    font-weight: 700;
+    opacity: 0;
+} 
 
-.image-container:hover .delete-btn {
+.tiles:hover .delete-btn{
+    opacity: 1;
+    margin: 0 auto;
+}
+.tiles:hover .edit-btn{
     opacity: 1;
     margin: 0 auto;
 }

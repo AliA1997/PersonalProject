@@ -23,6 +23,7 @@ class Home extends Component {
     this.backToMason = this.backToMason.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.showQuote = this.showQuote.bind(this);
+    this.hideQuote = this.hideQuote.bind(this);
   }
 
   componentDidMount() {
@@ -38,14 +39,8 @@ class Home extends Component {
         })
       });
     }).catch(() => {
-      this.props.history.push('/')
+      this.props.history.push('/loggedout')
     });
-    // axios.get("/home").then(response => {
-    //   let res = response.data.ListBucketResult.Contents;
-    //   this.setState({
-    //     contents: res
-    //   });
-    // });
   }
   showQuote(){
     axios.get('/homes').then(response => {
@@ -53,6 +48,11 @@ class Home extends Component {
       this.setState({
         quote: q
       })
+    })
+  }
+  hideQuote(){
+    this.setState({
+      quote: ''
     })
   }
   handleChange(event) {
@@ -72,30 +72,26 @@ class Home extends Component {
   }
 
   render() {
- 
     return (
-      <div className='component'>
+      <div>
         <Header />
         <div className="home-background">
           {/* <h1>HomePage</h1> */}
-          <div className='quote'>
-          <button onClick={this.showQuote}>Show Quote</button>
-          {this.state.quote ?
-          <p><b>Quote of the Day:</b> {this.state.quote}</p> : null}
-          </div>
-          {/* <textarea
-          className="dream-input"
-          onKeyPress={this.createMessage}
-          onChange={this.handleChange}
-          value={this.state.text}
-          />
-          <br />
-          <div className="text">{this.state.text}</div> */}
-        <button className='home-btn' onClick={this.handleGrid}>
+            <div className='buttons'>
+              <button className='home-btn' onClick={this.showQuote}>Quote of the Day</button>
+              <button className='home-btn' onClick={this.hideQuote}>Hide Quote</button>
+            </div>
+            <button className='home-btn' onClick={this.handleGrid}>
               Click Here for Drag and Drop
             </button>
             <button className='home-btn' onClick={this.backToMason}>Reset</button>
-          <div className="tile-boxes">
+            {this.state.quote ? 
+              <div className='quote'>
+              {this.state.quote}
+              </div>
+               : null}
+        </div>
+            <div id="tile-background">
             {this.state.grid ? (
               <Grid>
                 {this.state.contents.map((elem, i) => {
@@ -112,14 +108,6 @@ class Home extends Component {
                         data-grid={{ x: 4, y: 0, w: 1, h: 2 }}
                         onClick={this.imageClick}
                       />
-                      {/* <img
-                    onClick={this.imageClick}
-                    src={elem.image_url}
-                    alt="display"
-                    className="image"
-                    data-grid={{ x: 4, y: 0, w: 1, h: 2 }}
-                  />
-                 <h2 className='image-text'><span>{elem.image_text}</span></h2> */}
                     </div>
                   );
                 })}
@@ -140,21 +128,13 @@ class Home extends Component {
                         data-grid={{ x: 4, y: 0, w: 1, h: 2 }}
                         onClick={this.imageClick}
                       />
-                      {/* <img
-                      onClick={this.imageClick}
-                      src={elem.image_url}
-                      alt="display"
-                      className="image"
-                      data-grid={{ x: 4, y: 0, w: 1, h: 2 }}
-                    />
-                   <h2 className='image-text'><span>{elem.image_text}</span></h2> */}
                     </div>
                   );
                 })}
               </Masonry>
             )}
-          </div>
         </div>
+      
       </div>
     );
   }

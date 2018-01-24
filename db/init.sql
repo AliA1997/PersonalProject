@@ -10,6 +10,11 @@ CREATE TABLE IF NOT EXISTS dream_images (
 id SERIAL,
 user_id INT NOT NULL REFERENCES users,
 image_url TEXT,
-image_text TEXT
+image_text TEXT,
+category INT references dream_category(id)
 );
 
+CREATE TABLE IF NOT EXISTS dream_category (
+id SERIAL PRIMARY KEY,
+category_name TEXT
+);

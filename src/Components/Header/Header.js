@@ -1,31 +1,53 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import '../styles/Header.css';
-import logo from '../styles/imageedit_3_4114329595.png'
+import logo from '../styles/imageedit_3_4114329595.png';
+// import FaCloud from 'react-icons/lib/fa/cloud';
+import {connect} from 'react-redux';
 
 class Header extends Component {
+//     constructor(){
+//         super();
+//         this.state = {
+//             responsive: false
+//         }
+//         this.response = this.response.bind(this);
+//     }
+
+// response(){
+//     this.setState({
+//         responsive: true
+//     })
+// }
     render() {
         return (
             <div className='main-header-container'>
-                <div className='header'>
-                <img className='logo' src={logo} alt=''/>
-                <Link to ='/home'><h2 className='header-link'>SeizeMyDream</h2></Link>
-                <Link to='/mydreams' className='header-link'>My Dreams</Link>
+                <div className='header responsive'>
+                <Link to='/home'><img className='logo' src={logo} alt=''/>
+                </Link>
+                <div className='links'>
+                
+                <Link to='/mydreams' className='header-link'>My Board</Link>
+                <span className='dash'>|</span>
                 {/* <Link to='/alterdream' className='header-link'>Edit</Link> */}
                 <Link to='/uploaddream' className='header-link'>Upload</Link>
+                <span className='dash'>|</span>
+                <Link to='/aboutdreams' className='header-link'>About</Link> 
+                <span className='dash'>|</span>
                 <Link to='/' className='header-link' onClick={this.logout}>Logout</Link>
+                </div>
                 </div>
             </div>
         )
     }
 }
 
-// function mapStateToProps(state){
-//     return {
-//         user: state.user
-//     }
-// }
+function mapStateToProps(state){
+    return {
+        user: state.user
+    }
+}
 
 
 
-export default Header;
+export default connect(mapStateToProps)(Header);

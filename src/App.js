@@ -6,6 +6,7 @@ import Upload from './components/upload/Upload';
 import MyBoard from './components/account/Myboard';
 import Edit from './components/edit/Edit';
 import {Route, Switch} from 'react-router-dom';
+import Loggedout from './loggedOut/Loggedout';
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
           <Route path='/alterdream/:id' component={Edit} />
           <Route path='/mydreams' component={MyBoard} />
           <Route path='/uploaddream' component={Upload} />
+          <Route path='/loggedout' component={Loggedout} />
           </Switch>
       </div>
     );
