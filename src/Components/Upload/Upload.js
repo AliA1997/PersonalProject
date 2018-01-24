@@ -93,7 +93,7 @@ class Upload extends Component {
     let {categories} = this.state
     let showCat = null;
     if (file) {
-      $imagePreview = <img src={file} alt="display" />;
+      $imagePreview = <img className='upload-img' src={file} alt="display" />;
     } else {
       $imagePreview = (
         <div className="previewText">Please select an Image for Preview</div>
@@ -135,7 +135,7 @@ class Upload extends Component {
           <div>{showCat}</div>
           <div className="submit">
             <button
-              className="submitButton"
+              className="home-btn"
               type="submit"
               onClick={e => this._handleSubmit(e)}
             >

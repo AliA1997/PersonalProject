@@ -1,8 +1,26 @@
-.image {
+.home-component {
+    background-image: url('wires1.png');
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+.home-image {
     width: 400px;
     height: 300px;
     border-radius: 8pt;
     position: relative;
+}
+
+.home-image:hover {
+    transform: scale(1.1);
+}
+
+@media screen and (max-width: 700px){
+    .home-image {
+        width: 325px;
+        height: 225px;
+    }
 }
 
 .home-background {
@@ -23,10 +41,12 @@
 }
 
 #tile-background {
-    background-color: white;
+    /* background-color: white; */
     width: 87vw;
+    height: 100%;
     margin: 0 auto;
-    border: solid purple 2pt;
+    /* border: solid purple 2pt; */
+    text-align: center;
 }
 
 .home-btn {

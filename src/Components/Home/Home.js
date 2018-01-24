@@ -8,6 +8,7 @@ import Grid from "react-grid-layout";
 // import Upload from "../Upload/Upload";
 import { connect } from "react-redux";
 import {login} from '../../ducks/reducer';
+// import {Link} from 'react-router-dom';
 
 class Home extends Component {
   constructor() {
@@ -73,7 +74,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+      <div className='home-component'>
         <Header />
         <div className="home-background">
           {/* <h1>HomePage</h1> */}
@@ -104,7 +105,7 @@ class Home extends Component {
                           elem.Key
                         }`}
                         alt="display"
-                        className="image"
+                        className="home-image"
                         data-grid={{ x: 4, y: 0, w: 1, h: 2 }}
                         onClick={this.imageClick}
                       />
@@ -124,7 +125,7 @@ class Home extends Component {
                           elem.Key
                         }`}
                         alt="display"
-                        className="image"
+                        className="home-image"
                         data-grid={{ x: 4, y: 0, w: 1, h: 2 }}
                         onClick={this.imageClick}
                       />

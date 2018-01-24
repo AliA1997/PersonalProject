@@ -5,7 +5,7 @@ import Masonry from "react-masonry-component";
 import { connect } from "react-redux";
 import Header from "../header/Header";
 import "../styles/Myboard.css";
-import MdClear from "react-icons/lib/md/clear";
+// import Masonry from 'react-masonry-css';
 import {Link} from 'react-router-dom';
 import {login} from '../../ducks/reducer';
 
@@ -23,6 +23,7 @@ class Myboard extends Component {
       // text: '',
     };
     this.showAccountInfo = this.showAccountInfo.bind(this);
+    this.hideAccountInfo = this.hideAccountInfo.bind(this);
     this.deleteImage = this.deleteImage.bind(this);
     this.handleGrid = this.handleGrid.bind(this);
     this.backToMason = this.backToMason.bind(this);
@@ -52,6 +53,12 @@ class Myboard extends Component {
     });
   }
 
+  hideAccountInfo(){
+    this.setState({
+      account: []
+    })
+  }
+
   deleteImage(id){
     axios.delete(`/deletedream/${id}/${this.props.user.id}`).then(response => {
       this.setState({
@@ -76,7 +83,7 @@ class Myboard extends Component {
     const { contents } = this.state;
     const { account } = this.state;
     return (
-      <div className='component'>
+      <div className='myboard-component'>
         <Header />
         <div className='board-background'>
           <div className='buttons'>
@@ -131,14 +138,17 @@ class Myboard extends Component {
         </div>
         <div className='account-info'>
         <button className='myboard-btn' onClick={this.showAccountInfo}>Show Account Info</button>
+        <button className='myboard-btn' onClick={this.hideAccountInfo}>Reset</button>
         {account[0] ? (
-          <div className="account-info">
-            <h4>{account[0].name}</h4>
-            <h5>{account[0].email}</h5>
+          <div>
+            <div className='user-info'>
+            <h4>{this.props.user.name}</h4>
+            <h5>{this.props.user.email}</h5>
+            </div>
             {account.map((elem, i) => {
               return (
                 <div key={i} className='account-info-detail'>
-                  <h6><b>Image:</b> {elem.image_url} <b>/ Text:</b> {elem.image_text} <b>/ Category</b>{elem.category_name}</h6>
+                  <h4><b>Image:</b></h4><h6>{elem.image_url}</h6><h4><b>/ Text:</b></h4><h6>{elem.image_text}</h6><h4><b>/ Category </b></h4><h6>{elem.category_name}</h6>
                   
                 </div>
               );

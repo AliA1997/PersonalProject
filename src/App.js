@@ -5,6 +5,8 @@ import Home from './components/home/Home';
 import Upload from './components/upload/Upload';
 import MyBoard from './components/account/Myboard';
 import Edit from './components/edit/Edit';
+// import About from './components/about/About';
+import Search from './components/search/Search';
 import {Route, Switch} from 'react-router-dom';
 import Loggedout from './loggedOut/Loggedout';
 
@@ -18,7 +20,9 @@ class App extends Component {
           <Route path='/alterdream/:id' component={Edit} />
           <Route path='/mydreams' component={MyBoard} />
           <Route path='/uploaddream' component={Upload} />
+          {/* <Route path='/aboutdreams' component={About} /> */}
           <Route path='/loggedout' component={Loggedout} />
+          <Route path='/search' component={Search} />
           </Switch>
       </div>
     );

@@ -50,7 +50,7 @@ class Login extends Component {
   render() {
     return (
       <div className="login-page">
-        <img className='seize' src={newLogo} alt=''/>    
+        <img className='seize' src={newLogo} alt=''/>   
         <div className="login-box">
           <button className="btn-login" onClick={this.login}>
             Login/Register
