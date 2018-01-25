@@ -63,8 +63,8 @@
 }
 
 .seize {
-    height: 40%;
-    width: 40%;
+    height: 30%;
+    width: 30%;
     margin: 0 auto;
     animation-name: fadeIn;
     animation-duration: 5s;
@@ -91,9 +91,10 @@
 
 
 .login-box {
-    margin: 20% auto;
+    margin: 40% auto;
     background-color: purple;
-    width: 50%;
+    width: 400px;
+    height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;

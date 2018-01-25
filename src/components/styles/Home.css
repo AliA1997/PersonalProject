@@ -34,6 +34,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    /* margin-bottom: 30px; */
 }
 
 .quote{
@@ -50,7 +51,7 @@
 }
 
 .home-btn {
-    margin: 10px;
+    margin: 10px 0 30px;
     font-family: 'Source code pro', cursive;
     background-color: purple;
     padding: 10px;

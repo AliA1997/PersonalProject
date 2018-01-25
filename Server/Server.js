@@ -33,18 +33,6 @@ massive(process.env.CONNECTION_STRING)
     console.log("DB error", err);
   });
 
-// const s3 = new AWS.S3();
-// AWS.config.update(
-//     {
-//         accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-//         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-//     });
-
-// app.get('/sign_s3', require('react-s3-upload/S3Sign')({
-//     S3_BUCKET: 'seize-the-dream',
-//     unique: false
-// }));
-
 //PULLING IMAGES FROM API OR S3
 app.get("/home", (req, res) => {
   axios
@@ -54,35 +42,26 @@ app.get("/home", (req, res) => {
       var j = JSON.parse(json);
       res.status(200).json(j);
     });
-});
+  });
 
-//PULL IMAGES FROM PIXABAY API
-// app.get('/home', (req, res) => {
-//     axios.get('https://pixabay.com/api/?key=7703828-b2519c19690dcf8fd273b3f34&category=nature').then(response => {
-//         const j = response.data.hits;
-//         const pics = j.map(elem => {
-//             return elem.webformatURL
-//         })
-//         res.status(200).json(pics)
-//     })
-// })
 
 //PULL QUOTE OF DAY FROM API
 app.get("/homes", (req, res) => {
   axios.get("http://quotes.rest/qod.json").then(response => {
     const data = response.data;
-    res.json(data);
+    res.status(200).json(data);
   });
 });
 
-app.get("/myimages/:userid", (req, res) => {
-  app
-    .get("db")
-    .view_image(req.params.userid)
-    .then(images => {
-      res.send(images);
-    });
-});
+app.get("/myimages/:userid", ictrl.getDbImages)
+// (req, res) => {
+//   app
+//     .get("db")
+//     .view_image(req.params.userid)
+//     .then(images => {
+//       res.status(200).send(images);
+//     });
+// });
 
 
 //JOIN statement, needs Update
@@ -91,42 +70,46 @@ app.get("/mydreams/:userid", actrl.getAccount);
 //Upload Image
 app.post("/uploadimage/:userid", ictrl.addImage);
 
-app.get('/getcategory', (req, res) => {
-  app.get('db')
-  .get_cat()
-  .then(categories => {
-    res.send(categories);
-  })
-})
+app.get('/getcategory', ictrl.getImageCategories)
+// (req, res) => {
+//   app.get('db')
+//   .get_cat()
+//   .then(categories => {
+//     res.send(categories);
+//   })
+// })
 
 
 //Delete Image
-app.delete("/deletedream/:id/:userid", (req, res) => {
-  app
-    .get("db")
-    .delete_image(req.params.id, req.params.userid)
-    .then(images => {
-      res.send(images);
-    });
-});
+app.delete("/deletedream/:id/:userid", ictrl.deleteImage)
+// (req, res) => {
+//   app
+//     .get("db")
+//     .delete_image(req.params.id, req.params.userid)
+//     .then(images => {
+//       res.send(images);
+//     });
+// });
 
 //Edit Image
-app.get(`/alterdream/:id`, (req, res) => {
-  app.get('db')
-  .get_image([req.params.id])
-  .then(image => {
-    res.send(image)
-  })
-})
+app.get(`/alterdream/:id`, ictrl.editImage)
+// (req, res) => {
+//   app.get('db')
+//   .get_image([req.params.id])
+//   .then(image => {
+//     res.send(image)
+//   })
+// })
 
 //Update image in Database
-app.patch(`/alterdream/:text/:id`, (req, res) => {
-  app.get('db')
-  .update_image(req.params.text, req.params.id)
-  .then(() => {
-    res.send('')
-  })
-})
+app.patch(`/alterdream/:text/:id`, ictrl.updateImage)
+// (req, res) => {
+//   app.get('db')
+//   .update_image(req.params.text, req.params.id)
+//   .then(() => {
+//     res.status(200).send('')
+//   })
+// })
 
 //Logout
 app.post('/logout', (req, res) => {
@@ -134,8 +117,6 @@ app.post('/logout', (req, res) => {
   res.send();
 })
 
-
-//For Development purposes - Erase when using Auth
 app.post("/login", (req, res) => {
   const { userId } = req.body;
   const auth0Url = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/api/v2/users/${userId}`;
@@ -164,12 +145,6 @@ app.post("/login", (req, res) => {
       res.status(500).json({message: 'Server 500'});
   })
 });
-
-//Attempting to use react-images-uploader
-// app.post('/notmultiple', imagesUpload(
-//     './server/static/files',
-//     'http://localhost:3035/static/files'
-// ));
 
 function checkLoggedIn(req, res, next) {
   if (req.session.user) {

@@ -6,7 +6,6 @@ import { login } from "../../ducks/reducer";
 import { connect } from "react-redux";
 import Auth0Lock from "auth0-lock";
 import axios from "axios";
-import newLogo from '../styles/imageedit_3_4114329595.png'
 
 let options = {
   theme: {
@@ -50,7 +49,7 @@ class Login extends Component {
   render() {
     return (
       <div className="login-page">
-        <img className='seize' src={newLogo} alt=''/>   
+        <img className='seize' src={logo} alt=''/>   
         <div className="login-box">
           <button className="btn-login" onClick={this.login}>
             Login/Register

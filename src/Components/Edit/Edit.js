@@ -3,6 +3,7 @@ import Header from "../header/Header";
 import axios from 'axios';
 import {login} from '../../ducks/reducer';
 import {connect} from 'react-redux';
+import '../styles/Upload.css';
 
 class Edit extends Component {
   constructor(props) {
@@ -41,6 +42,8 @@ updateText(e){
 
 saveImage(props){
   const {id} = this.props.match.params
+  console.log(id, 'yep');
+  console.log(this.state.text, 'text')
   axios.patch(`/alterdream/${this.state.text}/${id}`).then(
     this.props.history.push(`/mydreams`))
 }
@@ -49,7 +52,7 @@ saveImage(props){
     const {url, text} = this.state;
     let $imagePreview = null;
     if (url){
-      $imagePreview = <img src={url} alt='' />;
+      $imagePreview = <img className='upload-img' src={url} alt='' />;
     } else {
       $imagePreview = (
         <div className='previewText'>Please select an Image for Preview</div>
@@ -59,10 +62,10 @@ saveImage(props){
       <div className='component'>
           <Header />
           <div className='previewComponent'>
-          <div>
+          {/* <div> */}
           <div className="imgPreview">
           {$imagePreview}</div>
-          </div>
+          {/* </div> */}
           <input value={text} onChange={(e) => this.updateText(e)}/>
           <button className='home-btn'onClick={this.saveImage}>Save</button>
         </div>

@@ -38,7 +38,6 @@ class Upload extends Component {
 
   _handleSubmit(e) {
     e.preventDefault();
-    // TODO: do something with -> this.state.file
     console.log("uploading-", this.state.file, this.state.text, this.props.user, this.state.category, 'Hey');
     const {id} = this.props.user
     axios.post(`/uploadimage/${id}`, {
@@ -80,6 +79,7 @@ class Upload extends Component {
     console.log('target', e.target.value)
     this.state.categories.filter(elem => {
       if(elem.category_name === e.target.value){
+        console.log(elem.id)
     this.setState({
       category: elem.id
     });}
@@ -102,7 +102,7 @@ class Upload extends Component {
     //CATEGORY???????????????????????????
     if(categories[0]){
       showCat = <select className='genre-choice' onChange={e => this.handleCategory(e)}>
-        {/* <option value='Default'>Select</option> */}
+        <option value='Default'>Select</option>
         <option value={categories[0].category_name}>{categories[0].category_name}</option>
         <option value={categories[1].category_name}>{categories[1].category_name}</option>
         <option value={categories[2].category_name}>{categories[2].category_name}</option>
@@ -113,7 +113,6 @@ class Upload extends Component {
     } else {
       showCat = <p>Loading Categories</p>
     }
-
     return (
       <div className="component">
         <Header />
