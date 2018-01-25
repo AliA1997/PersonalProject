@@ -9,13 +9,13 @@ const express = require("express"),
   corsPrefetch = require("cors-prefetch-middleware"),
   imagesUpload = require("images-upload-middleware"),
   actrl = require("./controllers/account_controller"),
-  ictrl = require("./controllers/image_controller");
-
-const app = express();
+  ictrl = require("./controllers/image_controller"),
+  path = require('path'),
+  app = express();
 
 app.use(bodyParser.json());
 
-app.use("/static", express.static(`./server/static`));
+app.use( express.static( `${__dirname}/../build` ) );
 
 app.use(
   session({
@@ -162,6 +162,10 @@ app.get("/user-data", checkLoggedIn, (req, res) => {
   }
 });
 
-const PORT = 3035;
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
+
+const PORT = 5000;
 
 app.listen(PORT, () => console.log(`We be jamming to the tunes of ${PORT}`));
